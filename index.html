@@ -32,12 +32,14 @@
         <div class="clock-display" aria-label="Horário atual"><div class="time-unit"><span id="hours" class="time-value">00</span><span class="time-label">Horas</span></div><span class="time-separator" aria-hidden="true">:</span><div class="time-unit"><span id="minutes" class="time-value">00</span><span class="time-label">Minutos</span></div><span class="time-separator" aria-hidden="true">:</span><div class="time-unit"><span id="seconds" class="time-value">00</span><span class="time-label">Segundos</span></div></div>
         <div class="clock-meta"><p id="date">Carregando data...</p><span class="meta-divider" aria-hidden="true"></span><p id="period">--</p></div>
         <div class="location-panel" aria-live="polite"><div class="location-copy"><span class="location-icon" aria-hidden="true">⌖</span><div><p class="location-label">Localização atual</p><p id="location-status">Aguardando sua permissão para localizar</p></div></div><button id="location-button" class="format-toggle" type="button">Detectar localização</button></div>
+        <section id="weather-panel" class="weather-panel" hidden aria-live="polite"><div class="weather-heading"><div><p class="location-label">Clima na sua localização</p><p id="weather-place" class="weather-place">Aguardando localização</p></div><span id="weather-icon" class="weather-icon">☁</span></div><div class="weather-current"><strong id="weather-temperature">--°C</strong><div><p id="weather-condition">Obtenha sua localização para consultar o clima</p><p id="weather-feels">Sensação: --</p></div></div><div id="weather-forecast" class="weather-forecast"></div></section>
         <div class="card-footer"><p id="timezone">Horário local</p><button id="format-toggle" class="format-toggle" type="button" aria-pressed="false">Ativar formato 24h</button></div>
       </div>
 
       <div id="alarm-view" class="tool-view" hidden>
         <div class="tool-heading"><div><p class="eyebrow">Lembretes pessoais</p><h2>Alarmes</h2></div><button id="notification-button" class="format-toggle" type="button">Ativar notificações</button></div>
         <form id="alarm-form" class="control-form"><label>Horário<input id="alarm-time" type="time" required></label><label>Nome<input id="alarm-label" type="text" maxlength="40" placeholder="Ex.: Reunião" value="Alarme"></label><button class="primary-button" type="submit">Adicionar alarme</button></form>
+        <div class="sound-settings"><label>Som dos alarmes<select id="alarm-sound"><option value="default">Sino padrão</option><option value="custom">Som personalizado</option></select></label><label class="file-picker">Adicionar MP3, WAV ou OGG<input id="custom-sound" type="file" accept="audio/mpeg,audio/wav,audio/ogg,audio/*"></label><span id="sound-status" class="sound-status">Nenhum arquivo personalizado carregado.</span></div>
         <div id="alarm-list" class="item-list" aria-live="polite"><p class="empty-state">Nenhum alarme configurado.</p></div>
       </div>
 

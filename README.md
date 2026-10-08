@@ -18,6 +18,8 @@ O Chronos transforma um exercício clássico de programação em uma central de 
 - Temas **Dark Mode** e **Light Mode**, com preferência salva no `localStorage`.
 - Alarmes personalizados persistidos no navegador, com nome, ativação/pausa e exclusão.
 - Som de alerta gerado pela Web Audio API e notificações nativas do navegador.
+- Sons de alarme personalizados por upload de arquivos MP3, WAV ou OGG.
+- Widget de clima com temperatura atual, sensação térmica, umidade e previsão de quatro dias.
 - Cronômetro com pausa, retomada, zeragem e registro de voltas.
 - Temporizador regressivo com pausa, retomada, zeragem e alerta ao finalizar.
 - Layout responsivo para celular, tablet e desktop.
@@ -58,7 +60,18 @@ Na aba **Mundo**, acompanhe São Paulo, Nova York e Tóquio por padrão, adicion
 
 ### Alarmes e notificações
 
-Na aba **Alarmes**, escolha um horário e um nome para criar um lembrete. Clique em **Ativar notificações** para autorizar notificações do navegador. O som é gerado localmente pela Web Audio API, sem arquivos externos; para que o alerta seja disparado, a página precisa continuar aberta.
+Na aba **Alarmes**, escolha um horário e um nome para criar um lembrete. Clique em **Ativar notificações** para autorizar notificações do navegador. O som padrão é gerado localmente pela Web Audio API. Para usar um som próprio, selecione **Som personalizado** e carregue um arquivo `.mp3`, `.wav` ou `.ogg`; o arquivo fica salvo somente no `localStorage` do navegador.
+
+Para adicionar sons diretamente ao código, coloque o arquivo em `assets/sounds/` e troque a fonte do áudio em `src/js/clock.js`:
+
+```js
+const audio = new Audio("assets/sounds/meu-alarme.mp3");
+audio.play();
+```
+
+### Clima
+
+Depois de clicar em **Detectar localização** e permitir o acesso, o Chronos usa latitude e longitude do dispositivo para consultar temperatura atual, sensação térmica, umidade e previsão de quatro dias no [Open-Meteo](https://open-meteo.com/). Não é necessária chave de API. A consulta só é feita após a permissão de localização e as coordenadas não são armazenadas pelo projeto.
 
 ### Cronômetro e temporizador
 
