@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Relógio digital moderno, responsivo e acessível.">
-    <meta name="theme-color" content="#0b1020">
-    <title>Chronos — Relógio digital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
-    <script src="src/js/clock.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chronos: relógio, alarmes, cronômetro e temporizador em um só lugar.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Chronos — Central de tempo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/css/style.css">
+  <script src="src/js/clock.js" defer></script>
 </head>
 <body>
-    <main class="page-shell">
-      <section class="clock-card" aria-labelledby="page-title">
-        <div class="card-header">
-          <div class="brand-lockup"><span class="brand-mark" aria-hidden="true">◷</span><div><p class="eyebrow">Seu tempo, no seu ritmo</p><h1 id="page-title">Chronos</h1></div></div>
-          <span class="live-indicator"><span aria-hidden="true"></span> Ao vivo</span>
-        </div>
-        <div class="clock-display" aria-label="Horário atual">
-          <div class="time-unit"><span id="hours" class="time-value">00</span><span class="time-label">Horas</span></div>
-          <span class="time-separator" aria-hidden="true">:</span>
-          <div class="time-unit"><span id="minutes" class="time-value">00</span><span class="time-label">Minutos</span></div>
-          <span class="time-separator" aria-hidden="true">:</span>
-          <div class="time-unit"><span id="seconds" class="time-value">00</span><span class="time-label">Segundos</span></div>
-        </div>
+  <main class="page-shell">
+    <section class="clock-card" aria-labelledby="page-title">
+      <div class="card-header">
+        <div class="brand-lockup"><span class="brand-mark" aria-hidden="true">◷</span><div><p class="eyebrow">Seu tempo, no seu ritmo</p><h1 id="page-title">Chronos</h1></div></div>
+        <span class="live-indicator"><span aria-hidden="true"></span> Ao vivo</span>
+      </div>
+
+      <nav class="mode-tabs" aria-label="Ferramentas de tempo">
+        <button class="mode-tab is-active" data-view="clock-view" type="button">Relógio</button>
+        <button class="mode-tab" data-view="alarm-view" type="button">Alarmes</button>
+        <button class="mode-tab" data-view="stopwatch-view" type="button">Cronômetro</button>
+        <button class="mode-tab" data-view="timer-view" type="button">Temporizador</button>
+      </nav>
+
+      <div id="clock-view" class="tool-view is-visible">
+        <div class="clock-display" aria-label="Horário atual"><div class="time-unit"><span id="hours" class="time-value">00</span><span class="time-label">Horas</span></div><span class="time-separator" aria-hidden="true">:</span><div class="time-unit"><span id="minutes" class="time-value">00</span><span class="time-label">Minutos</span></div><span class="time-separator" aria-hidden="true">:</span><div class="time-unit"><span id="seconds" class="time-value">00</span><span class="time-label">Segundos</span></div></div>
         <div class="clock-meta"><p id="date">Carregando data...</p><span class="meta-divider" aria-hidden="true"></span><p id="period">--</p></div>
-        <div class="location-panel" aria-live="polite">
-          <div class="location-copy"><span class="location-icon" aria-hidden="true">⌖</span><div><p class="location-label">Localização atual</p><p id="location-status">Aguardando sua permissão para localizar</p></div></div>
-          <button id="location-button" class="format-toggle" type="button">Detectar localização</button>
-        </div>
+        <div class="location-panel" aria-live="polite"><div class="location-copy"><span class="location-icon" aria-hidden="true">⌖</span><div><p class="location-label">Localização atual</p><p id="location-status">Aguardando sua permissão para localizar</p></div></div><button id="location-button" class="format-toggle" type="button">Detectar localização</button></div>
         <div class="card-footer"><p id="timezone">Horário local</p><button id="format-toggle" class="format-toggle" type="button" aria-pressed="false">Ativar formato 24h</button></div>
-      </section>
-      <p class="footer-note">Um pequeno projeto para acompanhar grandes momentos.</p>
-    </main>
+      </div>
+
+      <div id="alarm-view" class="tool-view" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">Lembretes pessoais</p><h2>Alarmes</h2></div><button id="notification-button" class="format-toggle" type="button">Ativar notificações</button></div>
+        <form id="alarm-form" class="control-form"><label>Horário<input id="alarm-time" type="time" required></label><label>Nome<input id="alarm-label" type="text" maxlength="40" placeholder="Ex.: Reunião" value="Alarme"></label><button class="primary-button" type="submit">Adicionar alarme</button></form>
+        <div id="alarm-list" class="item-list" aria-live="polite"><p class="empty-state">Nenhum alarme configurado.</p></div>
+      </div>
+
+      <div id="stopwatch-view" class="tool-view" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">Marque cada momento</p><h2>Cronômetro</h2></div><span id="stopwatch-state" class="status-pill">Parado</span></div>
+        <div id="stopwatch-display" class="large-display">00:00:00<span>.00</span></div>
+        <div class="action-row"><button id="stopwatch-start" class="primary-button" type="button">Iniciar</button><button id="stopwatch-lap" class="format-toggle" type="button" disabled>Volta</button><button id="stopwatch-reset" class="format-toggle" type="button">Zerar</button></div>
+        <div id="lap-list" class="item-list compact-list"></div>
+      </div>
+
+      <div id="timer-view" class="tool-view" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">Conte até o seu objetivo</p><h2>Temporizador</h2></div><span id="timer-state" class="status-pill">Pronto</span></div>
+        <div id="timer-display" class="large-display">00:00:00</div>
+        <div class="timer-inputs"><label>Minutos<input id="timer-minutes" type="number" min="0" max="999" value="5"></label><label>Segundos<input id="timer-seconds" type="number" min="0" max="59" value="0"></label></div>
+        <div class="action-row"><button id="timer-start" class="primary-button" type="button">Iniciar</button><button id="timer-reset" class="format-toggle" type="button">Zerar</button></div>
+      </div>
+    </section>
+    <p class="footer-note">Um pequeno projeto para acompanhar grandes momentos.</p>
+  </main>
 </body>
 </html>
