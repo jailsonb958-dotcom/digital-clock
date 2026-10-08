@@ -4,7 +4,7 @@ Um relógio digital minimalista, responsivo e acessível, desenvolvido como um p
 
 ## Visão geral
 
-O Chronos transforma um exercício clássico de programação em uma central de tempo: acompanha o horário local em tempo real, cria alarmes personalizados, oferece cronômetro e temporizador, permite alternar entre os formatos de 12 e 24 horas e identifica a localização atual usando a geolocalização de alta precisão do navegador.
+O Chronos transforma um exercício clássico de programação em uma central de tempo: acompanha o horário local em tempo real, cria alarmes personalizados, oferece cronômetro, temporizador e relógio mundial, permite alternar entre os formatos de 12 e 24 horas, alterna entre temas claro/escuro e identifica a localização atual usando a geolocalização de alta precisão do navegador.
 
 ### Destaques
 
@@ -12,7 +12,10 @@ O Chronos transforma um exercício clássico de programação em uma central de 
 - Formatação localizada em português do Brasil.
 - Alternância entre formatos de 12h e 24h.
 - Localização atual por GPS/rede do dispositivo com `enableHighAccuracy: true`, coordenadas e cidade.
+- Localização corrigida com botão reativado após sucesso/erro, mensagem de erro acionável, precisão em metros e dois provedores de geocodificação como fallback.
 - A localização só é solicitada quando a pessoa clica em **Detectar localização**.
+- Relógio mundial com múltiplos fusos horários, locais adicionáveis/removíveis e atualização em tempo real.
+- Temas **Dark Mode** e **Light Mode**, com preferência salva no `localStorage`.
 - Alarmes personalizados persistidos no navegador, com nome, ativação/pausa e exclusão.
 - Som de alerta gerado pela Web Audio API e notificações nativas do navegador.
 - Cronômetro com pausa, retomada, zeragem e registro de voltas.
@@ -47,7 +50,11 @@ Depois, acesse <http://localhost:8000>.
 
 ### Localização precisa
 
-Para obter a posição atual, clique em **Detectar localização** e permita o acesso quando o navegador solicitar. O recurso usa a API nativa `navigator.geolocation` com alta precisão e mostra as coordenadas recebidas; a cidade é obtida por geocodificação reversa. Em produção, o navegador exige HTTPS para liberar geolocalização.
+Para obter a posição atual, clique em **Detectar localização** e permita o acesso quando o navegador solicitar. O recurso usa a API nativa `navigator.geolocation` com alta precisão, mostra imediatamente as coordenadas e a margem de precisão em metros e tenta identificar a cidade por dois serviços de geocodificação reversa. Em produção, o navegador exige HTTPS para liberar geolocalização. Se o navegador bloquear o acesso, clique no ícone de cadeado ao lado do endereço, permita **Localização** e tente novamente.
+
+### Relógio mundial e temas
+
+Na aba **Mundo**, acompanhe São Paulo, Nova York e Tóquio por padrão, adicione outros locais e remova os que não quiser. Os horários são calculados com `Intl.DateTimeFormat` e os fusos IANA oficiais. O botão de tema no topo alterna entre Dark e Light Mode; a escolha fica salva localmente.
 
 ### Alarmes e notificações
 
@@ -59,7 +66,7 @@ As abas **Cronômetro** e **Temporizador** funcionam diretamente no navegador, s
 
 ## Deploy
 
-O projeto está configurado para publicação no Netlify com `netlify.toml`. Também pode ser hospedado no GitHub Pages, pois não depende de backend ou etapa de compilação.
+O projeto está configurado para publicação no Netlify com `netlify.toml` e está disponível em **[chronos-digital-clock.netlify.app](https://chronos-digital-clock.netlify.app/)**. Também pode ser hospedado no GitHub Pages, pois não depende de backend ou etapa de compilação.
 
 ## Créditos
 

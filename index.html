@@ -17,7 +17,7 @@
     <section class="clock-card" aria-labelledby="page-title">
       <div class="card-header">
         <div class="brand-lockup"><span class="brand-mark" aria-hidden="true">◷</span><div><p class="eyebrow">Seu tempo, no seu ritmo</p><h1 id="page-title">Chronos</h1></div></div>
-        <span class="live-indicator"><span aria-hidden="true"></span> Ao vivo</span>
+        <div class="header-actions"><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema">☼</button><span class="live-indicator"><span aria-hidden="true"></span> Ao vivo</span></div>
       </div>
 
       <nav class="mode-tabs" aria-label="Ferramentas de tempo">
@@ -25,6 +25,7 @@
         <button class="mode-tab" data-view="alarm-view" type="button">Alarmes</button>
         <button class="mode-tab" data-view="stopwatch-view" type="button">Cronômetro</button>
         <button class="mode-tab" data-view="timer-view" type="button">Temporizador</button>
+        <button class="mode-tab" data-view="world-view" type="button">Mundo</button>
       </nav>
 
       <div id="clock-view" class="tool-view is-visible">
@@ -52,6 +53,12 @@
         <div id="timer-display" class="large-display">00:00:00</div>
         <div class="timer-inputs"><label>Minutos<input id="timer-minutes" type="number" min="0" max="999" value="5"></label><label>Segundos<input id="timer-seconds" type="number" min="0" max="59" value="0"></label></div>
         <div class="action-row"><button id="timer-start" class="primary-button" type="button">Iniciar</button><button id="timer-reset" class="format-toggle" type="button">Zerar</button></div>
+      </div>
+
+      <div id="world-view" class="tool-view" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">Veja o mundo em tempo real</p><h2>Relógio mundial</h2></div><button id="world-add-button" class="format-toggle" type="button">Adicionar fuso</button></div>
+        <form id="world-form" class="control-form world-form" hidden><label>Nome do local<input id="world-label" type="text" maxlength="30" placeholder="Ex.: Tóquio" required></label><label>Fuso horário<select id="world-zone"><option value="America/Sao_Paulo">São Paulo</option><option value="America/New_York">Nova York</option><option value="Europe/London">Londres</option><option value="Europe/Paris">Paris</option><option value="Asia/Tokyo">Tóquio</option><option value="Asia/Shanghai">Xangai</option><option value="Australia/Sydney">Sydney</option><option value="Africa/Johannesburg">Joanesburgo</option><option value="UTC">UTC</option></select></label><button class="primary-button" type="submit">Adicionar</button></form>
+        <div id="world-list" class="world-list" aria-live="polite"></div>
       </div>
     </section>
     <p class="footer-note">Um pequeno projeto para acompanhar grandes momentos.</p>
