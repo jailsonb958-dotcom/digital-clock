@@ -4,13 +4,15 @@ Um relógio digital minimalista, responsivo e acessível, desenvolvido como um p
 
 ## Visão geral
 
-O Chronos transforma um exercício clássico de programação em uma pequena experiência visual: acompanha o horário local em tempo real, exibe a data atual e permite alternar entre os formatos de 12 e 24 horas.
+O Chronos transforma um exercício clássico de programação em uma pequena experiência visual: acompanha o horário local em tempo real, exibe a data atual, permite alternar entre os formatos de 12 e 24 horas e identifica a localização atual usando a geolocalização de alta precisão do navegador.
 
 ### Destaques
 
 - Atualização do horário a cada segundo, sem bibliotecas externas.
 - Formatação localizada em português do Brasil.
 - Alternância entre formatos de 12h e 24h.
+- Localização atual por GPS/rede do dispositivo com `enableHighAccuracy: true`, coordenadas e cidade.
+- A localização só é solicitada quando a pessoa clica em **Detectar localização**.
 - Layout responsivo para celular, tablet e desktop.
 - Interface com foco visível, HTML semântico e suporte a `prefers-reduced-motion`.
 - Zero build e zero dependências: basta abrir o `index.html`.
@@ -38,6 +40,10 @@ python3 -m http.server 8000
 ```
 
 Depois, acesse <http://localhost:8000>.
+
+### Localização precisa
+
+Para obter a posição atual, clique em **Detectar localização** e permita o acesso quando o navegador solicitar. O recurso usa a API nativa `navigator.geolocation` com alta precisão e mostra as coordenadas recebidas; a cidade é obtida por geocodificação reversa. Em produção, o navegador exige HTTPS para liberar geolocalização.
 
 ## Deploy
 

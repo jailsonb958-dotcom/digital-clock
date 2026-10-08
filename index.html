@@ -27,7 +27,11 @@
           <div class="time-unit"><span id="seconds" class="time-value">00</span><span class="time-label">Segundos</span></div>
         </div>
         <div class="clock-meta"><p id="date">Carregando data...</p><span class="meta-divider" aria-hidden="true"></span><p id="period">--</p></div>
-        <div class="card-footer"><p id="timezone">Horário local</p><button id="format-toggle" class="format-toggle" type="button" aria-pressed="false">Usar formato 24h</button></div>
+        <div class="location-panel" aria-live="polite">
+          <div class="location-copy"><span class="location-icon" aria-hidden="true">⌖</span><div><p class="location-label">Localização atual</p><p id="location-status">Aguardando sua permissão para localizar</p></div></div>
+          <button id="location-button" class="format-toggle" type="button">Detectar localização</button>
+        </div>
+        <div class="card-footer"><p id="timezone">Horário local</p><button id="format-toggle" class="format-toggle" type="button" aria-pressed="false">Ativar formato 24h</button></div>
       </section>
       <p class="footer-note">Um pequeno projeto para acompanhar grandes momentos.</p>
     </main>
