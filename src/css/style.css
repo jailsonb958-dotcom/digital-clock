@@ -1,0 +1,83 @@
+:root {
+  color-scheme: dark;
+  --bg: #080b16;
+  --panel: rgba(17, 23, 43, 0.82);
+  --panel-border: rgba(177, 190, 255, 0.16);
+  --text: #f7f8ff;
+  --muted: #929ab7;
+  --accent: #9b8cff;
+  --accent-strong: #c4bcff;
+  --glow: rgba(155, 140, 255, 0.3);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: -1;
+  width: 42vw;
+  height: 42vw;
+  min-width: 280px;
+  min-height: 280px;
+  border-radius: 50%;
+  content: "";
+  filter: blur(70px);
+  opacity: 0.34;
+}
+
+body::before { top: -18vw; left: -12vw; background: #44358f; }
+body::after { right: -14vw; bottom: -20vw; background: #172f67; }
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.clock-card {
+  width: min(100%, 760px);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(28, 34, 62, 0.88), var(--panel));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(18px);
+}
+
+.card-header, .card-footer, .clock-meta { display: flex; align-items: center; justify-content: space-between; }
+.brand-lockup { display: flex; align-items: center; gap: 14px; }
+.brand-mark { color: var(--accent-strong); font-size: 31px; line-height: 1; text-shadow: 0 0 24px var(--glow); }
+.eyebrow { margin: 0 0 3px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(24px, 4vw, 32px); letter-spacing: -0.05em; }
+.live-indicator { display: inline-flex; align-items: center; gap: 8px; color: #b8f4d1; font-size: 12px; font-weight: 600; }
+.live-indicator span { width: 7px; height: 7px; border-radius: 50%; background: #69e6a2; box-shadow: 0 0 12px #69e6a2; }
+
+.clock-display { display: flex; align-items: center; justify-content: center; gap: clamp(6px, 2vw, 18px); margin: clamp(52px, 9vw, 86px) 0 24px; }
+.time-unit { text-align: center; }
+.time-value { display: block; color: var(--text); font-family: "Space Mono", monospace; font-size: clamp(52px, 12vw, 118px); font-weight: 700; letter-spacing: -0.1em; line-height: 0.95; text-shadow: 0 0 38px var(--glow); }
+.time-label { display: block; margin-top: 16px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.time-separator { align-self: flex-start; margin-top: 2px; color: var(--accent); font-family: "Space Mono", monospace; font-size: clamp(38px, 8vw, 72px); line-height: 0.9; animation: blink 2s steps(2, start) infinite; }
+.clock-meta { justify-content: center; gap: 14px; color: var(--accent-strong); font-size: 14px; font-weight: 500; }
+.clock-meta p { margin: 0; }
+.meta-divider { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+.card-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(177, 190, 255, 0.11); }
+.card-footer p { margin: 0; color: var(--muted); font-size: 12px; }
+.format-toggle { padding: 10px 14px; border: 1px solid rgba(177, 190, 255, 0.2); border-radius: 10px; color: var(--accent-strong); background: rgba(155, 140, 255, 0.08); font: inherit; font-size: 12px; cursor: pointer; transition: 180ms ease; }
+.format-toggle:hover, .format-toggle:focus-visible { border-color: var(--accent); background: rgba(155, 140, 255, 0.17); outline: none; transform: translateY(-1px); }
+.footer-note { margin: 20px 0 0; color: rgba(146, 154, 183, 0.7); font-size: 12px; text-align: center; }
+
+@keyframes blink { 50% { opacity: 0.25; } }
+@media (max-width: 520px) { .clock-card { border-radius: 22px; } .card-header { align-items: flex-start; } .live-indicator { padding-top: 5px; } .clock-meta { font-size: 12px; } .card-footer { align-items: flex-start; gap: 18px; } .card-footer p { max-width: 110px; line-height: 1.4; } .format-toggle { text-align: right; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
