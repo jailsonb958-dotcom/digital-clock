@@ -67,7 +67,7 @@ h1 { margin: 0; font-size: clamp(24px, 4vw, 32px); letter-spacing: -0.05em; }
 .time-unit { text-align: center; }
 .time-value { display: block; color: var(--text); font-family: "Space Mono", monospace; font-size: clamp(52px, 12vw, 118px); font-weight: 700; letter-spacing: -0.1em; line-height: 0.95; text-shadow: 0 0 38px var(--glow); }
 .time-label { display: block; margin-top: 16px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-.time-separator { align-self: flex-start; margin-top: 2px; color: var(--accent); font-family: "Space Mono", monospace; font-size: clamp(38px, 8vw, 72px); line-height: 0.9; animation: blink 2s steps(2, start) infinite; }
+.time-separator { align-self: flex-start; margin-top: 2px; color: var(--accent); font-family: "Space Mono", monospace; font-size: clamp(38px, 8vw, 72px); line-height: 0.9; }
 .clock-meta { justify-content: center; gap: 14px; color: var(--accent-strong); font-size: 14px; font-weight: 500; }
 .clock-meta p { margin: 0; }
 .meta-divider { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
@@ -113,6 +113,12 @@ input:focus { border-color: var(--accent); outline: 2px solid rgba(155, 140, 255
 :root[data-theme="light"] { color-scheme: light; --bg: #eef1fb; --panel: rgba(255,255,255,.84); --panel-border: rgba(75,65,145,.16); --text: #1b1c32; --muted: #646987; --accent: #6658d9; --accent-strong: #5145b8; --glow: rgba(102,88,217,.18); }
 :root[data-theme="light"] body::before { background: #b9b1ff; opacity: .24; }
 :root[data-theme="light"] body::after { background: #9bd4ff; opacity: .22; }
+:root[data-theme="light"] .clock-card { background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(245,246,255,.9)); box-shadow: 0 24px 70px rgba(54,49,111,.14), inset 0 1px 0 rgba(255,255,255,.9); }
+:root[data-theme="light"] .mode-tabs { border-color: rgba(75,65,145,.14); background: rgba(229,231,250,.72); }
+:root[data-theme="light"] .mode-tab.is-active { color: #29235f; background: rgba(102,88,217,.18); }
+:root[data-theme="light"] .format-toggle, :root[data-theme="light"] .theme-toggle { border-color: rgba(75,65,145,.24); color: #40369b; background: rgba(102,88,217,.1); }
+:root[data-theme="light"] .location-panel, :root[data-theme="light"] .weather-panel, :root[data-theme="light"] .world-card, :root[data-theme="light"] .list-item { border-color: rgba(75,65,145,.14); background: rgba(236,237,252,.62); }
+:root[data-theme="light"] .primary-button { color: #fff; background: #5145b8; }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 .theme-toggle { width: 32px; height: 32px; border: 1px solid rgba(177,190,255,.2); border-radius: 50%; color: var(--accent-strong); background: rgba(155,140,255,.08); font-size: 17px; cursor: pointer; }
 input, select { width: 100%; padding: 11px 12px; border: 1px solid rgba(177,190,255,.2); border-radius: 10px; color: var(--text); background: rgba(8,11,22,.42); font: inherit; font-size: 13px; color-scheme: dark; }
